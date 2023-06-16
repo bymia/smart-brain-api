@@ -35,7 +35,6 @@ app.get('/profile/:id', profile.handleProfileGet(db))
 app.post('/image', image.handleImage(db))
 app.post('/imageurl', image.handleApiCall)
 
-
 const port = process.env.PORT || 3000;
 app.listen(port || 3000, () => {
   console.log(`app is running on ${port}`);
