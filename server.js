@@ -12,7 +12,7 @@ const image = require('./controllers/image');
 const db = knex({
   client: 'pg',
   connection:{
-      //connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_URL,
   host : process.env.DATABASE_HOST,
   port : 5432,
   user : process.env.DATABASE_USER,
@@ -23,12 +23,7 @@ const db = knex({
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors({
-  "origin": "*",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-  "preflightContinue": true,
-  "optionsSuccessStatus": 204
-}));
+app.use(cors());
 
 app.get('/', (req, res) => {res.json()});
 app.post('/signin', (req, res) => {signin.handleSignin(db, bcrypt, req, res)});
