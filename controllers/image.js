@@ -39,7 +39,7 @@ const handleApiCall = (req, res) => {
     .catch(err => res.status(400).json('unable to work with api'))
     }
 
-const handleImage = (db) => (req, res) => {
+const handleImage = (db, req, res) => {
     const { id } = req.body;
     db('users').where('id', '=', id)
     .increment('entries', 1)

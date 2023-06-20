@@ -31,12 +31,11 @@ app.use(cors({
 }));
 
 app.get('/', (req, res) => {res.json()});
-app.post('/signin', (req, res) => {signin.handleSignin(req, res, db, bcrypt)});
-app.post('/register', (req, res) => {register.handleRegister(req, res, db, bcrypt)});
+app.post('/signin', (req, res) => {signin.handleSignin(db, bcrypt, req, res)});
+app.post('/register', (req, res) => {register.handleRegister(db, bcrypt, req, res)});
 app.get('/profile/:id', (req, res) => {profile.handleProfileGet(db, req, res)});
-app.post('/image', (req, res) => {image.handleImage(req, res, db)});
+app.post('/image', (req, res) => {image.handleImage(db, req, res)});
 app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)});
-app.get('/imageurl', (req, res) => {image.handleApiCall(req, res)});
 
 const port = process.env.PORT || 3000;
 app.listen(port || 3000, () => {
