@@ -30,7 +30,14 @@ app.use(cors({
   "optionsSuccessStatus": 204
 }));
 
-app.get('/', (req, res) => {res.send('HOLLO WORLD')});
+app.get('/', (req, res) => {res.json({
+  connectionString: process.env.DATABASE_URL,
+  host : process.env.DATABASE_HOST,
+  port : 5432,
+  user : process.env.DATABASE_USER,
+  password : process.env.DATABASE_PW,
+  database : process.env.DATABASE_DB
+})});
 app.post('/signin', (req, res) => {signin.handleSignin(req, res, db, bcrypt)});
 app.post('/register', (req, res) => {register.handleRegister(req, res, db, bcrypt)});
 app.get('/profile/:id', (req, res) => {profile.handleProfileGet(req, res, db)});
