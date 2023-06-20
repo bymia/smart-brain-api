@@ -28,12 +28,14 @@ const handleApiCall = async (req, res) => {
         'Authorization': 'Key 6dff7b9517b545bfb5ed7f4b9b06ffdf'
     }
    };
-
-   const response = await axios.post("https://api.clarifai.com/v2/models/face-detection/outputs",raw, requestOptions) 
+   try {
+    const response = await axios.post("https://api.clarifai.com/v2/models/face-detection/outputs",raw, requestOptions) 
       console.log(response.data)
       res.json(response.data)
-    //.catch(err => {console.log(err); res.status(400).json('unable to work with api')})
-    }
+   } catch (error) {
+    console.log(error); res.status(400).json('unable to work with api')
+   }
+  }
 
 const handleImage = (db, req, res) => {
     const { id } = req.body;
