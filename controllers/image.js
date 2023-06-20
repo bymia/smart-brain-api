@@ -2,7 +2,7 @@
 const axios = require('axios');
 
 
-const handleApiCall = (req, res) => {  
+const handleApiCall = async (req, res) => {  
     const photo = req.body.id;
     const IMAGE_URL = photo;
   
@@ -29,12 +29,10 @@ const handleApiCall = (req, res) => {
     }
    };
 
-   axios.post("https://api.clarifai.com/v2/models/face-detection/outputs",raw, requestOptions)
-    .then(response => {
+   const response = await axios.post("https://api.clarifai.com/v2/models/face-detection/outputs",raw, requestOptions) 
       console.log(response.data)
       res.json(response.data)
-    })
-    .catch(err => {console.log(err); res.status(400).json('unable to work with api')})
+    //.catch(err => {console.log(err); res.status(400).json('unable to work with api')})
     }
 
 const handleImage = (db, req, res) => {
