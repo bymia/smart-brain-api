@@ -23,15 +23,13 @@ const handleApiCall = (req, res) => {
   });
   
     const requestOptions = {
-    method: 'POST',
     headers: {
         'Accept': 'application/json',
         'Authorization': 'Key 6dff7b9517b545bfb5ed7f4b9b06ffdf'
-    },
-    body: raw
+    }
    };
 
-   axios.post("https://api.clarifai.com/v2/models/face-detection/outputs", requestOptions)
+   axios.post("https://api.clarifai.com/v2/models/face-detection/outputs",raw, requestOptions)
     .then(response => response.json())
     .then(response => {
       res.json(response.data)
