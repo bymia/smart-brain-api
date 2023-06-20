@@ -30,7 +30,7 @@ const handleApiCall = (req, res) => {
    };
 
    axios.post("https://api.clarifai.com/v2/models/face-detection/outputs",raw, requestOptions)
-    .then(response => {console.log(response); return response.data})
+    .then(response => {console.log(response.data); return response})
     .then(response => {
       res.json(response.data)
     })
